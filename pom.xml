@@ -230,6 +230,6 @@
 	        </plugin>
 	        -->
 		</plugins>
-		<finalName>febs</finalName>
+		<finalName>bsds</finalName>
 	</build>
 </project>
