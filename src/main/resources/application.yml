@@ -97,4 +97,4 @@ logging:
     cc:
       mrbird:
         system:
-          dao: warn
+          dao: info

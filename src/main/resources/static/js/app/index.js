@@ -18,7 +18,7 @@
 	        .append("<style>.custom-control-input:checked ~ .custom-control-indicator{ border-color: " + theme_color + " }</style>")
 	        .append("<style>.custom-radio .custom-control-indicator:before{background-color: " + theme_color + "}</style>")
 	        .append("<style>.navigation__active > a:hover{color: " + theme_color + " !important;}</style>")
-	        .append("<style>.navigation__active{color: " + theme_color + ";font-weight: bold;background-color: rgba(63, 81, 181, 0.06);}</style>")
+	        .append("<style>.navigation__active{color: " + theme_color + ";font-weight: bold;}</style>")
 	        .append("<style>.fixed-table-pagination .pagination li.active a{ background:" + theme_color + ";border: 1px solid " + theme_color + "}</style>")
 	        .append("<style>.form-group__bar:before, .form-group__bar:after {background-color: " + theme_color + "}</style>")
 	        .append("<style>.daterangepicker td.active, .daterangepicker td.active:hover,.end-date {background-color: "+ theme_color +" !important}</style>")
@@ -63,7 +63,11 @@
 	                } else if (!o[i]["url"]) {
 	                    urlstr = "<div><span>" + o[i]["text"] + "</span><ul>";
 	                } else {
-	                    urlstr = "<div><span name=" + o[i]["url"] + " onclick='loadMain(this);'>" + o[i]["text"] + "</span><ul>";
+	                	var icon="";
+	                	if(o[i]["icon"]){
+                            icon="<i class='" + o[i]["icon"] + "'></i>&nbsp;&nbsp;"
+						}
+	                    urlstr = "<div><span name=" + o[i]["url"] + " onclick='loadMain(this);'>" +icon+ o[i]["text"] + "</span><ul>";
 	                }
 	                str += urlstr;
 	                if (o[i]["children"].length != 0) {

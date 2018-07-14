@@ -13538,3 +13538,13 @@ select {
 	color: #464a4c;
 }
 /*# sourceMappingURL=app.css.map */
+/*扩展*/
+.datasearch_wrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child),.form-control {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px  !important;
+  height: 30px !important;
+}
+.datasearch_wrapper .dataTables_buttons{
+  margin: 16px 0 0 0px;
+}
