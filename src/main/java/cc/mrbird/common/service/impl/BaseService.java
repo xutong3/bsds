@@ -2,12 +2,10 @@ package cc.mrbird.common.service.impl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cc.mrbird.common.dao.SeqenceMapper;
 import cc.mrbird.common.service.IService;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
@@ -17,16 +15,9 @@ public abstract class BaseService<T> implements IService<T> {
 
 	@Autowired
 	protected Mapper<T> mapper;
-	@Autowired
-	protected SeqenceMapper seqenceMapper;
 
 	public Mapper<T> getMapper() {
 		return mapper;
-	}
-
-	@Override
-	public Long getSequence(@Param("seqName") String seqName) {
-		return seqenceMapper.getSequence(seqName);
 	}
 
 	@Override
@@ -40,19 +31,19 @@ public abstract class BaseService<T> implements IService<T> {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public int save(T entity) {
 		return mapper.insert(entity);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public int delete(Object key) {
 		return mapper.deleteByPrimaryKey(key);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public int batchDelete(List<String> list, String property, Class<T> clazz) {
 		Example example = new Example(clazz);
 		example.createCriteria().andIn(property, list);
@@ -60,13 +51,13 @@ public abstract class BaseService<T> implements IService<T> {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public int updateAll(T entity) {
 		return mapper.updateByPrimaryKey(entity);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public int updateNotNull(T entity) {
 		return mapper.updateByPrimaryKeySelective(entity);
 	}

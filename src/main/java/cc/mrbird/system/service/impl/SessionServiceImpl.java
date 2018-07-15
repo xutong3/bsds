@@ -18,6 +18,11 @@ import cc.mrbird.system.domain.User;
 import cc.mrbird.system.domain.UserOnline;
 import cc.mrbird.system.service.SessionService;
 
+/**
+ * Shiro Session 对象管理
+ * @link https://mrbird.cc/Spring-Boot-Shiro%20session.html
+ * @author MrBird
+ */
 @Service("sessionService")
 public class SessionServiceImpl implements SessionService {
 
@@ -49,7 +54,7 @@ public class SessionServiceImpl implements SessionService {
 			userOnline.setStartTimestamp(session.getStartTimestamp());
 			userOnline.setLastAccessTime(session.getLastAccessTime());
 			Long timeout = session.getTimeout();
-			if (timeout == 0l) {
+			if (timeout == 0L) {
 				userOnline.setStatus("0");
 			} else {
 				userOnline.setStatus("1");

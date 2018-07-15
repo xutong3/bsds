@@ -40,7 +40,7 @@ public class SpecCaptcha extends Captcha {
 	/**
 	 * 生成验证码
 	 * 
-	 * @throws java.io.IOException
+	 * @throws IOException
 	 *             IO异常
 	 */
 	@Override

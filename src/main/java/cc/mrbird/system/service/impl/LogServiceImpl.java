@@ -25,26 +25,26 @@ public class LogServiceImpl extends BaseService<SysLog> implements LogService {
 			Example example = new Example(SysLog.class);
 			Criteria criteria = example.createCriteria();
 			if (StringUtils.isNotBlank(log.getUsername())) {
-				criteria.andCondition("lower(username)=", log.getUsername().toLowerCase());
+				criteria.andCondition("username=", log.getUsername().toLowerCase());
 			}
 			if (StringUtils.isNotBlank(log.getOperation())) {
 				criteria.andCondition("operation like", "%" + log.getOperation() + "%");
 			}
 			if (StringUtils.isNotBlank(log.getTimeField())) {
 				String[] timeArr = log.getTimeField().split("~");
-				criteria.andCondition("to_char(CREATE_TIME,'yyyy-mm-dd') >=", timeArr[0]);
-				criteria.andCondition("to_char(CREATE_TIME,'yyyy-mm-dd') <=", timeArr[1]);
+				criteria.andCondition("date_format(CREATE_TIME,'%Y-%m-%d') >=", timeArr[0]);
+				criteria.andCondition("date_format(CREATE_TIME,'%Y-%m-%d') <=", timeArr[1]);
 			}
 			example.setOrderByClause("create_time");
 			return this.selectByExample(example);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ArrayList<SysLog>();
+			return new ArrayList<>();
 		}
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public void deleteLogs(String logIds) {
 		List<String> list = Arrays.asList(logIds.split(","));
 		this.batchDelete(list, "id", SysLog.class);

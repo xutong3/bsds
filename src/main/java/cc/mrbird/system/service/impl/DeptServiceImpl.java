@@ -28,39 +28,39 @@ public class DeptServiceImpl extends BaseService<Dept> implements DeptService {
 
 	@Override
 	public Tree<Dept> getDeptTree() {
-		List<Tree<Dept>> trees = new ArrayList<Tree<Dept>>();
+		List<Tree<Dept>> trees = new ArrayList<>();
 		List<Dept> depts = this.findAllDepts(new Dept());
 		for (Dept dept : depts) {
-			Tree<Dept> tree = new Tree<Dept>();
+			Tree<Dept> tree = new Tree<>();
 			tree.setId(dept.getDeptId().toString());
 			tree.setParentId(dept.getParentId().toString());
 			tree.setText(dept.getDeptName());
 			trees.add(tree);
 		}
-		Tree<Dept> t = TreeUtils.build(trees);
-		return t;
+		return TreeUtils.build(trees);
 	}
 
 	@Override
 	public List<Dept> findAllDepts(Dept dept) {
 		try {
 			Example example = new Example(Dept.class);
-			if(StringUtils.isNotBlank(dept.getDeptName())){
+			if (StringUtils.isNotBlank(dept.getDeptName())) {
 				example.createCriteria().andCondition("dept_name=", dept.getDeptName());
 			}
 			example.setOrderByClause("dept_id");
-			return this.deptMapper.selectByExample(example);
+			return this.selectByExample(example);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ArrayList<Dept>();
+			return new ArrayList<>();
 		}
+
 	}
 
 	@Override
 	public Dept findByName(String deptName) {
 		Example example = new Example(Dept.class);
 		example.createCriteria().andCondition("lower(dept_name) =", deptName.toLowerCase());
-		List<Dept> list = this.deptMapper.selectByExample(example);
+		List<Dept> list = this.selectByExample(example);
 		if (list.size() == 0) {
 			return null;
 		} else {
@@ -69,18 +69,17 @@ public class DeptServiceImpl extends BaseService<Dept> implements DeptService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public void addDept(Dept dept) {
 		Long parentId = dept.getParentId();
 		if (parentId == null)
-			dept.setParentId(0l);
-		dept.setDeptId(this.getSequence(Dept.SEQ));
+			dept.setParentId(0L);
 		dept.setCreateTime(new Date());
-		this.deptMapper.insert(dept);
+		this.save(dept);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public void deleteDepts(String deptIds) {
 		List<String> list = Arrays.asList(deptIds.split(","));
 		this.batchDelete(list, "deptId", Dept.class);
@@ -89,13 +88,13 @@ public class DeptServiceImpl extends BaseService<Dept> implements DeptService {
 
 	@Override
 	public Dept findById(Long deptId) {
-		return this.deptMapper.selectByPrimaryKey(deptId);
+		return this.selectByKey(deptId);
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional
 	public void updateDept(Dept dept) {
-		this.deptMapper.updateByPrimaryKeySelective(dept);
+		this.updateNotNull(dept);
 	}
 
 }

@@ -4,22 +4,19 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import cc.mrbird.common.annotation.ExportConfig;
 
-@Table(name = "T_ROLE")
+@Table(name = "t_role")
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = -1714476694755654924L;
 
-	/**
-	 * Role表序列
-	 */
-	public static final String SEQ = "seq_role";
-
 	@Id
+	@GeneratedValue(generator = "JDBC")
 	@Column(name = "ROLE_ID")
 	private Long roleId;
 

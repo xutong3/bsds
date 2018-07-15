@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import cc.mrbird.common.annotation.ExportConfig;
 
-@Table(name = "T_MENU")
+@Table(name = "t_menu")
 public class Menu implements Serializable {
 
 	private static final long serialVersionUID = 7187628714679791771L;
@@ -18,9 +19,8 @@ public class Menu implements Serializable {
 
 	public static final String TYPE_BUTTON = "1";
 
-	public static final String SEQ = "seq_menu";
-
 	@Id
+	@GeneratedValue(generator = "JDBC")
 	@Column(name = "MENU_ID")
 	@ExportConfig(value = "编号")
 	private Long menuId;

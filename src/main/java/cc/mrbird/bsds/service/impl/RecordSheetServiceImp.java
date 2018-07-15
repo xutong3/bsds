@@ -32,7 +32,7 @@ public class RecordSheetServiceImp extends BaseService<RecordSheet> implements I
                 criteria.andEqualTo("rType",recordSheet.getrType());
             }
             if (StringUtils.isNotBlank(recordSheet.getrSolName())){
-                criteria.andCondition("(R_CODE||R_SOL_NAME||R_POTENCY||R_REF_METHOD) like ","%"+recordSheet.getrSolName()+"%");
+                criteria.andCondition("concat(R_CODE,R_SOL_NAME,R_POTENCY,R_REF_METHOD) like ","%"+recordSheet.getrSolName()+"%");
             }
             example.setOrderByClause("R_UPD_DATE desc");
             return this.selectByExample(example);

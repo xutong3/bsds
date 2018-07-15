@@ -29,7 +29,7 @@ public class RecordApplyServiceImp extends BaseService<RecordApply> implements I
                 criteria.andEqualTo("apType",recordApply.getApType());
             }
             if (StringUtils.isNotBlank(recordApply.getrName())){
-                criteria.andCondition("(AP_NAME||R_NAME||AP_BATCH_NUM) like ","%"+recordApply.getrName()+"%");
+                criteria.andCondition("concat(AP_NAME,R_NAME,AP_BATCH_NUM) like ","%"+recordApply.getrName()+"%");
             }
             example.setOrderByClause("AP_DATE desc");
             return this.selectByExample(example);

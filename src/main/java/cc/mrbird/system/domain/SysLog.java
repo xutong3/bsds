@@ -4,20 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import cc.mrbird.common.annotation.ExportConfig;
 
-@Table(name = "T_LOG")
+@Table(name = "t_log")
 public class SysLog implements Serializable {
 
 	private static final long serialVersionUID = -8878596941954995444L;
 
-	public static final String SEQ = "seq_log";
-	
 	@Id
+	@GeneratedValue(generator = "JDBC")
 	@Column(name = "ID")
 	private Long id;
 
@@ -184,5 +184,6 @@ public class SysLog implements Serializable {
 	public void setTimeField(String timeField) {
 		this.timeField = timeField;
 	}
+	
 
 }

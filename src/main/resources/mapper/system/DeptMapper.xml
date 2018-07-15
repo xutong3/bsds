@@ -13,11 +13,11 @@
   </resultMap>
   
   <update id="changeToTop" parameterType="java.util.List">
-  	update t_dept set parent_id = 0 where dept_id in
+  	update t_dept set parent_id = 0 where dept_id in ( select a.dept_id from (
   	(select dept_id from t_dept where parent_id in 
   	<foreach collection="list" item="deptId" index="index" open="(" close=")" separator=",">
   		#{deptId}
   	</foreach>
-  	)
+  	) ) a )
   </update>
 </mapper>

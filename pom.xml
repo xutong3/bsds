@@ -6,7 +6,7 @@
 	<groupId>cc.mrbird</groupId>
 	<artifactId>bsds</artifactId>
 	<version>1.0-snapshot</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>bsds</name>
 	<description>Authority Management System</description>
@@ -173,11 +173,16 @@
 		
 		<!-- oracle驱动 -->
 		<!--数据库连接工具  -->
-		<dependency>
+<!--		<dependency>
 		    <groupId>com.oracle</groupId>
 		    <artifactId>ojdbc6</artifactId>
 		    <version>11.2.0.3</version>
 		     <scope>runtime</scope>
+		</dependency>-->
+		<!-- MySQL驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<!-- druid数据源驱动 -->
 		<dependency>
@@ -196,7 +201,7 @@
 		</repository>
 	</repositories>
 
-	<build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -235,5 +240,34 @@
 	        </plugin>
 		</plugins>
 		<finalName>bsds</finalName>
+	</build>
+-->
+	<build>
+		<finalName>bsds</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>cc.mrbird.Application</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
 	</build>
 </project>
