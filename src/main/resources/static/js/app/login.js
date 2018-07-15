@@ -52,8 +52,8 @@ function login() {
         return;
     }
     if (code == "") {
-        $MB.n_warning("请输入验证码！");
-        return;
+        // $MB.n_warning("请输入验证码！");
+        // return;
     }
     $loginButton.html("").append("<div class='login-loder'><div class='line-scale'><div></div><div></div><div></div><div></div><div></div></div></div>");
     
@@ -71,7 +71,7 @@ function login() {
             if (r.code == 0) {
                 location.href = ctx + 'index';
             } else {
-        		if (r.msg == '验证码错误！') reloadCode();
+        		// if (r.msg == '验证码错误！') reloadCode();
                 $MB.n_warning(r.msg);
                 $loginButton.html("登录");
             }

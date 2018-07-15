@@ -38,13 +38,13 @@ public class LoginController extends BaseController {
     @ResponseBody
     public ResponseBo login(String username, String password, String code, Boolean rememberMe) {
         if (!StringUtils.isNotBlank(code)) {
-            return ResponseBo.warn("验证码不能为空！");
+//            return ResponseBo.warn("验证码不能为空！");
         }
         Session session = super.getSession();
         String sessionCode = (String) session.getAttribute("_code");
         session.removeAttribute("_code");
         if (!code.toLowerCase().equals(sessionCode)) {
-            return ResponseBo.warn("验证码错误！");
+//            return ResponseBo.warn("验证码错误！");
         }
         // 密码 MD5 加密
         password = MD5Utils.encrypt(username.toLowerCase(), password);
