@@ -10,7 +10,7 @@ spring:
       type: com.alibaba.druid.pool.DruidDataSource
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://182.61.49.93:3306/bsds_schema?useUnicode=true&characterEncoding=utf8
-      username: root
+      username: bsds
       password: xdrcft5^
       # 连接池配置
       initial-size: 5
