@@ -13,17 +13,17 @@
   </resultMap>
   
   <select id="findUserRole" resultMap="roleMap">
-  	select r.* from t_role r 
-  	left join t_user_role ur on(r.role_id = ur.role_id)
-	left join t_user u on(u.user_id = ur.user_id) 
-	where u.username = #{userName}
+  	SELECT R.* FROM T_ROLE R
+  	LEFT JOIN T_USER_ROLE UR ON(R.ROLE_ID = UR.ROLE_ID)
+	LEFT JOIN T_USER U ON(U.USER_ID = UR.USER_ID)
+	WHERE U.USERNAME = #{userName}
   </select>
   
   <select id="findById" resultType="roleWithMenu">
-  	select r.role_id roleId,r.role_name roleName,r.remark,
-  	rm.menu_id menuId from t_role r
-	left join t_role_menu rm on(r.role_id = rm.role_id)
-	where r.role_id = #{roleId}
+  	SELECT R.ROLE_ID ROLEID,R.ROLE_NAME ROLENAME,R.REMARK,
+  	RM.MENU_ID MENUID FROM T_ROLE R
+	LEFT JOIN T_ROLE_MENU RM ON(R.ROLE_ID = RM.ROLE_ID)
+	WHERE R.ROLE_ID = #{roleId}
   </select>
   
 </mapper>

@@ -13,8 +13,8 @@
   </resultMap>
   
   <update id="changeToTop" parameterType="java.util.List">
-  	update t_dept set parent_id = 0 where dept_id in ( select a.dept_id from (
-  	(select dept_id from t_dept where parent_id in 
+  	UPDATE T_DEPT SET PARENT_ID = 0 WHERE DEPT_ID IN ( SELECT a.DEPT_ID FROM (
+  	(SELECT DEPT_ID FROM T_DEPT WHERE PARENT_ID IN
   	<foreach collection="list" item="deptId" index="index" open="(" close=")" separator=",">
   		#{deptId}
   	</foreach>
