@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 import cc.mrbird.common.annotation.ExportConfig;
 
-@Table(name = "t_dict")
+@Table(name = "T_DICT")
 public class Dict implements Serializable{
 
 	private static final long serialVersionUID = 7780820231535870010L;

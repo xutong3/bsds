@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 import cc.mrbird.common.annotation.ExportConfig;
 
-@Table(name = "t_log")
+@Table(name = "T_LOG")
 public class SysLog implements Serializable {
 
 	private static final long serialVersionUID = -8878596941954995444L;
